@@ -80,9 +80,9 @@ body {
 <div class="header">
   <a href="#default" class="logo"><img src="images/WeSell.jpg" height="50"> WeSell</a> 
   <div class="header-right">
-    <a class="active" href="#home">Home</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+    <a class="active" href="homePage.php">Home</a>
+    <a href="contact.php">Contact</a>
+    <a href="about.php">About</a>
     <a href="#login">Login</a>
   </div>
 </div>
