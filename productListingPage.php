@@ -11,6 +11,20 @@ $result = $conn->query($sql);
 $total_products = mysqli_num_rows($result);
 
 
+require_once("Cart.php");
+$cart = new Cart();
+
+if(!empty($_GET["action"])) {
+    switch($_GET["action"]) {
+        case "add":
+            $cart->addToCart($_POST,$_GET);
+        break;
+        case "emptyCart":
+            $cart->emptyCart();    
+        break;
+    }
+}
+
 ?>
 
 
@@ -54,9 +68,17 @@ background-color:#303030;
 
   <div class="container" style="padding-top:10px;padding-left:40px;width:800px;height:1000px;">
         <h1>Products</h1>
-         <p><?=$total_products?> Products</p>
+         <p><?=$total_products?> Products </p>
+         <form method="post" action="productListingPage.php?action=emptyCart">
+            <div class="choose"  style="padding-left:100px;width=400px;"> 
+               <ul class="nav nav-pills">
+               <input type="submit" value="Empty Cart" class="fa fa-shopping-cart" />
+               </ul>
+           </div>
+           </form>
         <?php foreach ($result as $product): ?>
         <div class='container2'>
+        <form method="post" action="productListingPage.php?action=add&code=<?=$product['productId']?>">
             <div class="left">
                 <img src="images/<?=$product['imageName']?>" width="100" height="150" alt="<?=$product['productName']?>">
              </div> 
@@ -70,16 +92,26 @@ background-color:#303030;
                 </span>
             </div>
             <br/>
+           
              <div class="choose"  style="padding-left:100px;"> 
                 <ul class="nav nav-pills">
-                    <li><a href="#"><i class="fa fa-shopping-cart"></i>Add to  cart</a></li>
+                <input type="submit" value="Add to Cart" class="fa fa-shopping-cart" />
                 </ul>
             </div>
+            </form>
        </div>
         <?php endforeach; ?>
+       
     </div>
                
-   
+    <?php
+// Set session variables
+
+if(!empty($_SESSION['shopping_cart'])) {
+echo "Session variables are set.".json_encode($_SESSION["shopping_cart"]) ;
+echo "message". $_SESSION["message"];
+}
+?>
 
 <?php include('include/footer.php') ;?>
 
