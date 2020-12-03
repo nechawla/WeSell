@@ -84,6 +84,7 @@ body {
     <a href="contact.php">Contact</a>
     <a href="about.php">About</a>
     <a href="#login">Login</a>
+    <a href="addCartPage.php"><i class="fa fa-shopping-cart" style="font-size:36px"></i></a>
   </div>
 </div>
 
