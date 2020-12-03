@@ -22,8 +22,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`email`, `first_name`, `second_name`, `phone`, `password`) VALUES
-('neeluchawla841@gmail.com', 'Chawla', 'Chawla', '5146515850', 'f56a24c4bb9079ef7223f4e41d210061'),
-('neeluchawla84@gmail.com', 'Chawla', '', '5146515850', 'Test123$');
+('neeluchawla841@gmail.com', 'Chawla', 'Chawla', '5146515850', 'f56a24c4bb9079ef7223f4e41d210061');
 
 --
 -- Indexes for dumped tables
