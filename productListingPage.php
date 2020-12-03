@@ -68,11 +68,11 @@ background-color:#303030;
 
   <div class="container" style="padding-top:10px;padding-left:40px;width:800px;height:1000px;">
         <h1>Products</h1>
-         <p><?=$total_products?> Products </p>
+         <p><?=$total_products?> Products are avaialble for Shopping. </p>
          <form method="post" action="productListingPage.php?action=emptyCart">
-            <div class="choose"  style="padding-left:100px;width=400px;"> 
-               <ul class="nav nav-pills">
-               <input type="submit" value="Empty Cart" class="fa fa-shopping-cart" />
+            <div class="choose"  style="padding-left:620px"> 
+               <ul class="nav-pills">
+               <input type="submit" value="Empty Cart Selection"  class="fa fa-shopping-cart" />
                </ul>
            </div>
            </form>
