@@ -78,7 +78,7 @@ body {
 <body>
 
 <div class="header">
-  <a href="#default" class="logo"><img src="images/WeSell.jpg" height="50"> WeSell</a> 
+  <a href="homePage.php" class="logo"><img src="images/WeSell.jpg" height="50"> WeSell</a> 
   <div class="header-right">
     <a class="active" href="homePage.php">Home</a>
     <a href="contact.php">Contact</a>
