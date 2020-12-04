@@ -18,7 +18,7 @@
 <body>
   <?php include('include/header.php'); ?>
 
- <div style="padding-top:20px;padding-left:40px;width:500px;height:600px;">
+ <div class="container" style="padding-top:20px;padding-left:40px;width:500px;height:600px;">
   <div class="form-group">
        <!--    body  (form)-->            
         <form action="login.php" method="post">
@@ -33,7 +33,8 @@
           </div>
           <!-- Submib button -->
           <div class="form-group">
-            <button type="submit"  >Login</button>
+            
+          <input type="submit" class="btn btn-success btn-block" name="submit" value="Login">
           </div>
         </form>
   
@@ -43,24 +44,24 @@
   if(isset($_POST["submit"])){
     if(!empty($_POST['email']) && !empty($_POST['password'])) {
       $loginEmail=$_POST['email'];
-      $loginPass=$_POST['password'];
-
+      $loginPass=md5($_POST['password']);
+      echo "Session variables";
       $servername = "localhost";$username = "root";$password = "";$database="weselldb";
       // Create connection
       $con = new mysqli($servername, $username, $password,$database);
-      $query="SELECT * FROM customer WHERE email='".$loginEmail."' AND password='".$loginPass."'";  
+      $query="SELECT * FROM customer WHERE email='".$loginEmail."' AND password='".$loginPass."'";   
       $result= mysqli_query($con, $query);
       $num = mysqli_num_rows($result);
+
       //need to add the encryption for password check, tested with a hardcoded user
-   
+    
       if($num == 1){
         $_SESSION['email'] = $loginEmail;
-        header("location: homePage.php");
-        //exit();
+       echo '<script>window.location="homePage.php"</script>';
+      
       }else  
       {
-        header("location: login.php");
-        //exit();
+        echo '<script>window.location="login.php"</script>';
       }
     }  
   } 
