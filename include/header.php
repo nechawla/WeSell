@@ -1,3 +1,8 @@
+<?php
+if(session_id() == '') {
+  session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -79,15 +84,30 @@ body {
 
 <div class="header">
   <a href="homePage.php" class="logo"><img src="images/WeSell.jpg" height="50"> WeSell</a> 
+  
   <div class="header-right">
+ 
     <a class="active" href="homePage.php">Home</a>
     <a href="contact.php">Contact</a>
     <a href="about.php">About</a>
-    <a href="login.php">Login</a>
+   <?php if(!empty($_SESSION["email"])){?>
+      <a href="orderDetailPage.php">Orders Placed</a>
+   <?php } ?>
     <a href="addCartPage.php"><i class="fa fa-shopping-cart" style="font-size:36px"></i></a>
+    <?php
+    if(empty($_SESSION["email"])){?>
+    <a href="login.php">Login</a>
+   <?php } ?>
+   <?php
+    if(!empty($_SESSION["email"])){?>
+    <a href="logout.php">Log Out</a>
+   <?php } ?>
   </div>
 </div>
-
+<?php 
+  if(!empty($_SESSION["email"])){
+  echo "Hello ". $_SESSION["email"];
+  } ?>
 
 </body>
 </html>

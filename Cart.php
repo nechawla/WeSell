@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_id() == '') {
+    session_start();
+  }
 
 
 class Cart{
@@ -51,18 +53,16 @@ $cartArray = array(
    );
    if(empty($_SESSION["shopping_cart"])) {
     $_SESSION["shopping_cart"] = $cartArray;
-    $status = "<div class='box'>Product is added to your cart!</div>";
+    $_SESSION["message"]=" First item is added to your cart!";
 }else{
     $array_keys = array_keys($_SESSION["shopping_cart"]);
     if(in_array($code,$array_keys)) {
-     $status = "<div class='box' style='color:red;'>
-      Product is already added to your cart!</div>"; 
       $_SESSION["message"]=" Product is already added to your cart!";
-    } else {
+    }
+    if(!in_array($code,$array_keys)) {
     $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
-    $status = "<div class='box'>Product is added to your cart!</div>";
     $_SESSION["message"]="Product is added to your cart!";
- }
+     }
  
  }
  
@@ -75,6 +75,22 @@ public function emptyCart()
     unset($_SESSION['shopping_cart']);
 }
 
+
+public function remove($post,$get)
+{
+
+    foreach($_SESSION["shopping_cart"] as $k => $v) {
+        if($_GET["code"] == $_SESSION["shopping_cart"][$k]["code"])
+            unset($_SESSION["shopping_cart"][$k]);				
+        if(empty($_SESSION["shopping_cart"]))
+            unset($_SESSION["shopping_cart"]);  
+        }
+}
+ 
+public function payOrder()
+{
+    echo '<script>window.location="payOrder.php"</script>';
+}
 
 }
 ?>

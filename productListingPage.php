@@ -6,10 +6,17 @@ $database="weselldb";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$database);
+if(!empty($_GET["productCode"])){
+   
+    $sql = "select * from product where productId=".$_GET["productCode"];
+$result = $conn->query($sql);
+$total_products = mysqli_num_rows($result);
+}
+else{
 $sql = "select * from product";
 $result = $conn->query($sql);
 $total_products = mysqli_num_rows($result);
-
+}
 
 require_once("Cart.php");
 $cart = new Cart();
@@ -23,6 +30,9 @@ if(!empty($_GET["action"])) {
             $cart->emptyCart();    
         break;
     }
+}
+if(!empty($_GET["code"])){
+
 }
 
 ?>
@@ -76,6 +86,17 @@ background-color:#303030;
                </ul>
            </div>
            </form>
+           <?php if(!empty($_SESSION["shopping_cart"])) { ?>
+   <div class='box'><?php echo $_SESSION["message"]; ?></div>
+         <?php  }  ?>
+           <form method="post" action="addCartPage.php">
+            <div class="choose"  style="padding-left:620px"> 
+               <ul class="nav-pills">
+               
+               <input type="submit" value="Go to Cart"  class="fa fa-shopping-cart" />
+               </ul>
+           </div>
+           </form>
         <?php foreach ($result as $product): ?>
         <div class='container2'>
         <form method="post" action="productListingPage.php?action=add&code=<?=$product['productId']?>">
@@ -95,7 +116,7 @@ background-color:#303030;
            
              <div class="choose"  style="padding-left:100px;"> 
                 <ul class="nav nav-pills">
-                <input type="submit" value="Add to Cart" class="fa fa-shopping-cart" />
+                <input type="submit" value="Add to Cart" class="fa fa-shopping-cart"/>
                 </ul>
             </div>
             </form>
@@ -104,13 +125,14 @@ background-color:#303030;
        
     </div>
                
-    <?php
-// Set session variables
+   
 
-if(!empty($_SESSION['shopping_cart'])) {
-echo "Session variables are set.".json_encode($_SESSION["shopping_cart"]) ;
-echo "message". $_SESSION["message"];
+<?php 
+
+if(!empty($_SESSION["P"])) { 
+  echo $_SESSION["P"];
 }
+
 ?>
 
 <?php include('include/footer.php') ;?>

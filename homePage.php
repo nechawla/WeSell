@@ -1,6 +1,16 @@
 <?php
 
 
+include 'search.php';
+// Create an object of type customer
+$search = new Search();
+// Insert Record in customer table
+if(isset($_POST['submit']))
+{
+    $search->searchProduct($_POST,$_GET);
+}
+
+
 ?>
 
 
@@ -31,8 +41,8 @@
        <!--    body  (form)-->            
         <form role="form" action="homePage.php" method="post" id="homePage">
             <label>Search</label>
-            <input type="text" name="search" style="width:500px;height:30px" placeholder="Enter the name of cellphone " required>
-             <input type="submit" class="btn btn-success" value="Search" name="search">
+            <input type="text" name="searchData" style="width:500px;height:30px" placeholder="Enter the name of cellphone " required>
+             <input type="submit"  name="submit" value="Search">
              
         </form>  
                       
@@ -43,6 +53,16 @@
     </form>
    </div>
 </div>
+
+
+<?php 
+
+if(!empty($_SESSION["P"])) { 
+  echo $_SESSION["P"];
+}
+
+?>
+
 
 <?php include('include/footer.php') ;?>
 
