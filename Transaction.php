@@ -31,7 +31,13 @@ class Transaction{
 public function placeOrder($post,$get)
 {
     $payment = $this->con->real_escape_string($_POST['payment_type']);
-    $Email = $this->con->real_escape_string($_POST['inputEmail']);
+    if(!empty($_SESSION['email'])){
+        $Email=$_SESSION['email'];
+    }
+    else{
+        $Email="Guest";
+    }
+
     if($payment=="pay_later")
     {
         $payment_Type = "Pay Later";

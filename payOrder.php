@@ -15,16 +15,7 @@ if(!empty($_GET["action"])) {
 
 
 ?>
-<script type="text/javascript">
-    $(document).ready(function() {
-        var element = document.getElementsByClassName("inputEmail");
-        setInterval(
-            function(){
-                element.innerHTML = "{{Session::get('email')}}";
-            },500
-        );
-    });
-</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,10 +50,7 @@ if(!empty($_GET["action"])) {
             <label>Last Name</label>
             <input type="text" name="inputLastName" class="form-control" placeholder="Last Name " required>
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="inputEmail"  class="form-control" placeholder="Email Address " required>
-          </div>
+      
           
  <br/>
  <br/>
