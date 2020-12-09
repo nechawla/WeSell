@@ -88,12 +88,20 @@ body {
   <div class="header-right">
  
     <a class="active" href="homePage.php">Home</a>
-    <a href="contact.php">Contact</a>
+    <?php if(!empty($_SESSION['admin'])){?>
+      <a href="contactList.php">View Complaints</a>
+      <a href="customerList.php">View Customers</a>
+      <?php } ?>
+      <?php if(empty( $_SESSION['admin'])){?>
+      <a href="contactPage.php">Contact</a>
+      <?php } ?>
     <a href="about.php">About</a>
    <?php if(!empty($_SESSION["email"])){?>
-      <a href="orderDetailPage.php">Orders Placed</a>
+      <a href="orderDetailPage.php">View Orders</a>
    <?php } ?>
+   <?php if(empty($_SESSION['admin'])){?>
     <a href="addCartPage.php"><i class="fa fa-shopping-cart" style="font-size:36px"></i></a>
+    <?php } ?>
     <?php
     if(empty($_SESSION["email"])){?>
     <a href="login.php">Login</a>

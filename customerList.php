@@ -9,17 +9,9 @@ $password = "";
 $database="weselldb";
 $conn = new mysqli($servername, $username, $password,$database);
 // Create connection
-if(empty($_SESSION['admin'])){
+if(!empty($_SESSION['admin'])){
 
-if(!empty($_SESSION['email'])){
-$email=$_SESSION['email'];
-$sql = "select * from transaction where orderedBy='$email'";
-$result = $conn->query($sql);
-$total_products = mysqli_num_rows($result);
-}
-}
-else{
-  $sql = "select * from transaction";
+  $sql = "select * from customer where Role='user'";
   $result = $conn->query($sql);
   $total_products = mysqli_num_rows($result);
 }
@@ -33,7 +25,7 @@ else{
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Order Detail Page</title>
+  <title>Customer List Page</title>
 
 
   <meta charset="utf-8">
@@ -72,29 +64,27 @@ background-color:#303030;
 <div class="txt-heading">Orders: </div>
 	<br/>
     <br/>
-<p><?=$total_products?> orders have been placed on your account. </p>
+<p><?=$total_products?> customers are registered.</p>
 <br/>
 <br/>
   <table class="tbl-cart" cellpadding="10" cellspacing="2">
   <tbody>
   <tr>
-  <th style="text-align:left;" width="3%">Order ID</th>
-  <th style="text-align:left;" width="10%">Product Name</th>
-  <th style="text-align:left;" width="10%">Order Status</th>
-  <th style="text-align:left;" width="5%">Payment Date</th>
-  <th style="text-align:left;" width="10%">Payment Type</th>
-  <th style="text-align:left;" width="2%">Ordered By</th>
+  <th style="text-align:left;" width="3%">First Name</th>
+  <th style="text-align:left;" width="10%">Last Name</th>
+  <th style="text-align:left;" width="10%">Email</th>
+  <th style="text-align:left;" width="5%">Phone</th>
+
   </tr>	
 
 
           <?php foreach ($result as $item): ?>
 				<tr>
-				<td><?php echo $item["orderId"]; ?></td>
-				<td style="text-align:left;"><?php echo $item["orderedItems"]; ?></td>
-                <td style="text-align:left;"><?php echo $item["OrderStatus"]; ?></td>
-                <td style="text-align:left;"><?php echo $item["orderedDate"]; ?></td>
-                <td style="text-align:left;"><?php echo $item["paymentType"]; ?></td>
-                <td style="text-align:left;"><?php echo $item["orderedBy"]; ?></td>
+				<td><?php echo $item["first_name"]; ?></td>
+				<td style="text-align:left;"><?php echo $item["second_name"]; ?></td>
+                <td style="text-align:left;"><?php echo $item["email"]; ?></td>
+                <td style="text-align:left;"><?php echo $item["phone"]; ?></td>
+
  </tr>
          <?php endforeach; ?>
 

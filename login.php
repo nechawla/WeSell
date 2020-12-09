@@ -37,6 +37,9 @@
           <input type="submit" class="btn btn-success btn-block" name="submit" value="Login">
           </div>
         </form>
+        <form role="form" action="register.php" method="post" id="register">
+        <input type="submit"  class="btn btn-success btn-block" value="Register User" name="register">    
+    </form>
   
 </div>
 
@@ -57,6 +60,9 @@
     
       if($num == 1){
         $_SESSION['email'] = $loginEmail;
+        if($loginEmail=="admin@wesell.com"){
+          $_SESSION['admin'] = true;
+        }
        echo '<script>window.location="homePage.php"</script>';
       
       }else  

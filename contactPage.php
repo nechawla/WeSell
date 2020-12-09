@@ -1,12 +1,13 @@
 <?php
 
-    include 'contactDB.php';
 
-    $contactDBObj = new Contacts();
+    require_once("Contacts.php");
+
+    $contacts = new Contacts();
 
     if(isset($_POST['submit']))
     {
-        $contactDBObj->insertData($_POST);
+        $contacts->insertData($_POST);
     }
 
 ?>
@@ -68,9 +69,12 @@
 <body>
 <?php include('include/header.php'); ?>
 
+
+<div class="container" style="padding-top:20px;padding-left:40px;width:500px;height:600px;">
+  <div class="form-group">
   <h3>Contact Us</h3>
     
-    <form>
+    <form action="contactPage.php" method="post"  >
     <div id="divName">
         <label>Name: </label>
         <input type="text" name="nameText">
@@ -86,11 +90,12 @@
 
     </br>
 
-    <input type="submit" name="btnSubmit" value="Send">
+    <input type="submit" name="submit"  class="btn btn-success btn-block" value="Submit Form">
     
     </br> </br>
     </form>
-
+</div>
+</div>  
 <?php include('include/footer.php'); ?>  
 </body>
 </html>

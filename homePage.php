@@ -1,5 +1,7 @@
 <?php
-
+if(session_id() == '') {
+  session_start();
+}
 
 include 'search.php';
 // Create an object of type customer
@@ -37,6 +39,7 @@ if(isset($_POST['submit']))
   <?php include('include/header.php'); ?>
 
   <div class="container" style="padding-top:50px;padding-left:40px;width:700px;height:600px;">
+  <?php if(empty($_SESSION['admin'])){?>
   <div class="form-group">
        <!--    body  (form)-->            
         <form role="form" action="homePage.php" method="post" id="homePage">
@@ -52,18 +55,25 @@ if(isset($_POST['submit']))
         <input type="submit" style="width:200px;" class="btn btn-success" value="View All Products" name="viewAll">    
     </form>
    </div>
-</div>
 
+<?php } ?>
+<?php if(!empty($_SESSION['admin'])){?>
+  <form role="form" action="orderDetailPage.php" method="post" id="order">
+        <input type="submit" style="width:200px;" class="btn btn-success" value="View All Orders" name="viewAll">    
+    </form>
+    <br/>
+    <br/>
+    <form role="form" action="contactList.php" method="post" id="complaints">
+        <input type="submit" style="width:200px;" class="btn btn-success" value="View All Compliants" name="viewAll">    
+    </form>
+    <br/>
+    <br/>
+    <form role="form" action="customerList.php" method="post" id="customers">
+        <input type="submit" style="width:200px;" class="btn btn-success" value="View All Customers" name="viewAll">    
+    </form>
+  <?php } ?>
 
-<?php 
-
-if(!empty($_SESSION["P"])) { 
-  echo $_SESSION["P"];
-}
-
-?>
-
-
+  </div>
 <?php include('include/footer.php') ;?>
 
 </body>

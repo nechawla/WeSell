@@ -4,7 +4,7 @@ if(session_id() == '') {
     session_start();
   }
 unset($_SESSION['email']);
-
+unset($_SESSION['admin']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,11 +26,16 @@ unset($_SESSION['email']);
   <?php include('include/header.php'); ?>
 
  <div class="container" style="padding-top:20px;padding-left:40px;width:500px;height:600px;">
+ <form role="form" action="homePage.php" method="post" id="complaints">
+        <input type="submit" style="width:200px;" class="btn btn-success" value="Go Home Page" name="viewAll">    
+    </form>
+    <br/>
+    <br/>
+    <form role="form" action="login.php" method="post" id="customers">
+        <input type="submit" style="width:200px;" class="btn btn-success" value="Go Login Page" name="viewAll">    
+    </form>
  
- 
- <a href="homePage.php" class="btnRemoveAction">Go Home Page</a>
- <br/>
- <a href="login.php" class="btnRemoveAction">Go Login Page</a>
+
 </div>
 
 

@@ -26,9 +26,9 @@ class Contacts
         $name = $this->con->real_escape_string($_POST['nameText']);
         $email = $this->con->real_escape_string($_POST['emailText']);
         $message = $this->con->real_escape_string($_POST['messageText']);
-        $query = " INSERT INTO contact(name, email, message,) VALUES ('$name', '$email', '$message')";
+        $orderedDate=date("Y/m/d");
+        $query = " INSERT INTO contact(name, email, message, dateSubmitted) VALUES ('$name', '$email', '$message','$orderedDate')";
         $sql = $this->con->query($query);
-
         
         if($sql == true)
         {

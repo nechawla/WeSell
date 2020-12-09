@@ -51,7 +51,7 @@ public function placeOrder($post,$get)
         }
         $products=implode(',',$name);
     $orderedDate=date("Y/m/d");
-    $query = "INSERT INTO transaction(orderedItems,orderedBy, orderStatus, paymentType,orderedDate) VALUES ('$products','$Email','under review','$payment_Type','$orderedDate')";
+    $query = "INSERT INTO transaction(orderedItems,orderedBy, orderStatus, paymentType,orderedDate) VALUES ('$products','$Email','success','$payment_Type','$orderedDate')";
     $sql = $this->con->query($query);
     if($sql == true){
         $last_id = $this->con->insert_id;

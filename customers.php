@@ -30,10 +30,10 @@ class Customers{
         $email = $this->con->real_escape_string($_POST['inputEmail']);
         $phone = $this->con->real_escape_string($_POST['phone']);
         $password = md5($this->con->real_escape_string($_POST['password']));
-        $query = "INSERT INTO customer(first_name,second_name, email, phone, password) VALUES ('$first_name','$last_name', '$email', '$phone', '$password')";
+        $query = "INSERT INTO customer(first_name,second_name, email, phone, password,Role) VALUES ('$first_name','$last_name', '$email', '$phone', '$password','user')";
         $sql = $this->con->query($query);
         if($sql == true){
-            echo "Data inserted!";
+            echo '<script>window.location="login.php"</script>';
         }
         else{
             echo "Registration failed, please try again!";
